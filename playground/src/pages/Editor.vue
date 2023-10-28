@@ -17,6 +17,7 @@
       :moveable-options="moveableOptions"
       :auto-scroll-into-view="true"
       :stage-rect="stageRect"
+      :canSelect="canSelect"
     >
       <template #workspace-content>
         <DeviceGroup ref="deviceGroup" v-model="stageRect"></DeviceGroup>
@@ -86,6 +87,13 @@ const stageRect = ref({
   width: 375,
   height: 817,
 });
+
+const canSelect = (el: HTMLElement): Boolean => {
+  const classListArray = Array.from(el.classList);
+  return classListArray.some((className) => /^magic-ui/.test(className));
+
+  // return el.classList.contains('magic-ui-component') || el.classList.contains('magic-ui-container');
+};
 
 const previewUrl = computed(
   () => `${VITE_RUNTIME_PATH}/page/index.html?localPreview=1&page=${editor.value?.editorService.get('page')?.id}`,
