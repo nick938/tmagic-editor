@@ -1,8 +1,10 @@
 <template>
-  <p>{{ config.text }}</p>
+  <p>{{ config.text + a }}</p>
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue';
+
 import { MComponent } from '@tmagic/schema';
 
 import useApp from '../../useApp';
@@ -16,7 +18,7 @@ const props = withDefaults(
     model: () => ({}),
   },
 );
-
+const a = ref('dfa');
 useApp({
   config: props.config,
   methods: {},
